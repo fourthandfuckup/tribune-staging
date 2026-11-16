@@ -6,7 +6,7 @@ const allowed=(url,method)=>{
   if(['GET','HEAD'].includes(method))return true;
   let u;try{u=new URL(url,location.href)}catch{return false}
   if(u.hostname!=='nlckcelwfcoszbvqyeyr.supabase.co')return false;
-  if(u.pathname==='/auth/v1/token'&&method==='POST')return true;
+  if(['/auth/v1/token','/auth/v1/otp','/auth/v1/verify'].includes(u.pathname)&&method==='POST')return true;
   if(u.pathname==='/auth/v1/logout'&&method==='POST')return true;
   if(u.pathname==='/auth/v1/user'&&method==='PUT')return true;
   const table=u.pathname.match(/^\/rest\/v1\/([a-z_]+)$/)?.[1];
