@@ -15,6 +15,10 @@ $('office-filter').addEventListener('change',render);
 supabase.auth.onAuthStateChange(()=>{setTimeout(check,0);});check();
 
 async function loadCirculation() {
+  const stagingSection = Array.from(document.querySelectorAll('section, div')).find(el => el.textContent?.trim() === 'Circulation reports are being connected. Check back soon.');
+  if(stagingSection) stagingSection.textContent='Circulation statistics intentionally unavailable on read-only staging. Production statistics are not tested here.';
+  return;
+
   
 const section = Array.from(document.querySelectorAll('section, div')).find(el => el.textContent?.trim() === 'Circulation reports are being connected. Check back soon.');
 
